@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>钳工理论考核练习系统</title>
+<meta name="theme-color" content="#2563eb">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="钳工练习">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header><h1>钳工理论考核练习系统</h1></header>
+<div class="tabs">
+<button class="tab-btn active" data-tab="practice">开始练习</button>
+<button class="tab-btn" data-tab="records">练习记录</button>
+<button class="tab-btn" data-tab="wrong">错题本</button>
+<button class="tab-btn" data-tab="bank">题库</button>
+<button class="tab-btn" data-tab="settings">设置</button>
+</div>
+<div id="tab-practice" class="tc active">
+<div id="practice-start">
+<div class="card"><div class="ct">练习设置</div>
+<div class="fg"><label class="fl">题目数量（1-<span id="max-count">541</span>）</label><input type="number" id="question-count" class="fi" value="10" min="1" max="541"></div>
+<div class="fg"><label class="fl">题型筛选</label><select id="question-type" class="si"><option value="all">全部题型</option><option value="single">单选题</option><option value="multi">多选题</option><option value="judge">判断题</option><option value="short">简答题</option><option value="calc">计算题</option></select></div>
+<div class="fg"><label class="fl">范围筛选（可选）</label><select id="question-category" class="si"><option value="all">全部范围</option></select></div>
+<button class="btn bs" id="start-btn" style="width:100%">开始练习</button></div>
+<div class="card"><div class="ct">题库统计</div>
+<div class="sg"><div class="sb" style="cursor:pointer" onclick="goBank('single')"><div class="sv" id="stat-single">0</div><div class="sl">单选题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('multi')"><div class="sv" id="stat-multi">0</div><div class="sl">多选题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('judge')"><div class="sv" id="stat-judge">0</div><div class="sl">判断题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('short')"><div class="sv" id="stat-short">0</div><div class="sl">简答题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('calc')"><div class="sv" id="stat-calc">0</div><div class="sl">计算题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('all')"><div class="sv" id="stat-total">0</div><div class="sl">总计</div></div></div></div></div>
+<div id="practice-area" class="hi">
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="sm">第 <span id="current-num">1</span> / <span id="total-num">10</span> 题</span><span class="tm" id="timer">00:00</span></div>
+<div class="pb"><div class="pf" id="progress-fill" style="width:10%"></div></div>
+<div class="qm" id="question-meta"></div><div class="qt" id="question-text"></div>
+<div id="options-area"></div>
+<div class="fg" id="text-answer-area" style="display:none"><label class="fl">请输入答案：</label><textarea id="text-answer" class="fi" rows="4"></textarea></div>
+<div class="nb"><button class="btn" id="prev-btn" disabled>上一题</button><button class="btn" id="next-btn">下一题</button></div></div></div>
+<div id="result-area" class="hi">
+<div class="card ce"><div class="ct">练习结果</div><div class="sb2" id="final-score">0</div>
+<div class="sm tl mb1">用时：<span id="final-time">00:00</span></div>
+<div class="sm tl mb1">答对：<span id="final-correct">0</span> / <span id="final-total">0</span></div>
+<div class="sm tl mb1">得分率：<span id="final-rate">0%</span></div>
+<div class="bg ce"><button class="btn" id="review-btn">查看错题</button><button class="btn bs" id="restart-btn">再练一次</button></div></div>
+<div id="review-area"></div></div></div>
+<div id="tab-records" class="tc"><div class="card"><div class="ct" style="display:flex;justify-content:space-between;align-items:center"><span>练习记录</span><button class="btn bd" id="clear-records-btn">清除记录</button></div><div id="records-list"></div></div></div>
+<div id="tab-wrong" class="tc"><div class="card"><div class="ct" style="display:flex;justify-content:space-between;align-items:center"><span>错题本</span><div class="bg"><button class="btn" id="practice-wrong-btn">错题练习</button><button class="btn bd" id="clear-wrong-btn">清空</button></div></div><div id="wrong-list"></div></div></div>
+<div id="tab-bank" class="tc"><div class="card"><div class="ct" style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem"><span>题库浏览</span><div style="display:flex;gap:.5rem;flex-wrap:wrap"><select id="bank-type" class="si" style="width:auto"><option value="all">全部题型</option><option value="single">单选题</option><option value="multi">多选题</option><option value="judge">判断题</option><option value="short">简答题</option><option value="calc">计算题</option></select><select id="bank-cat" class="si" style="width:auto"><option value="all">全部范围</option></select><input type="text" id="bank-search" class="fi" style="width:160px" placeholder="搜索题干..."></div></div><div id="bank-list"></div><div class="ce mt2"><button class="btn" id="bank-prev">上一页</button><span class="sm tl" id="bank-page-info" style="margin:0 1rem">1/1</span><button class="btn" id="bank-next">下一页</button></div></div></div>
+<div id="tab-settings" class="tc"><div class="card"><div class="ct">设置</div><div class="fg"><label class="fl">默认题目数量</label><input type="number" id="default-count" class="fi" value="10" min="1" max="541"></div><button class="btn" id="save-settings-btn">保存设置</button></div>
+<div class="card"><div class="ct">添加到桌面</div><p class="sm tl mb1">本页面是纯 HTML 离线文件，没有服务器，因此浏览器通常不会自动弹出“安装应用”。请按下面步骤手动添加到手机桌面。</p><div class="bg"><button class="btn bs" id="install-help-btn">查看我的手机操作步骤</button></div><div id="install-guide" class="mt2"></div><p class="sm tl mt2">建议：把 <b>文件</b> 发送到手机后，用 Safari / Chrome / Edge 打开，再通过浏览器菜单添加到主屏幕或桌面。</p></div>
+<div class="card mt2"><div class="ct">数据管理</div><p class="sm tl mb1">清除所有练习记录和错题数据（不可恢复）</p><button class="btn bd" id="clear-all-btn">清除所有数据</button></div></div>
+<script src="question_bank.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
