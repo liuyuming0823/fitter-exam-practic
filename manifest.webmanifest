@@ -1,0 +1,18 @@
+{
+  "name": "钳工理论考核练习系统",
+  "short_name": "钳工练习",
+  "description": "钳工理论考核离线练习与错题记录系统",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f8fafc",
+  "theme_color": "#2563eb",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
