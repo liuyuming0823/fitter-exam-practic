@@ -32,12 +32,12 @@
 <div class="card"><div class="ct">题库统计</div>
 <div class="sg"><div class="sb" style="cursor:pointer" onclick="goBank('single')"><div class="sv" id="stat-single">0</div><div class="sl">单选题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('multi')"><div class="sv" id="stat-multi">0</div><div class="sl">多选题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('judge')"><div class="sv" id="stat-judge">0</div><div class="sl">判断题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('short')"><div class="sv" id="stat-short">0</div><div class="sl">简答题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('calc')"><div class="sv" id="stat-calc">0</div><div class="sl">计算题</div></div><div class="sb" style="cursor:pointer" onclick="goBank('all')"><div class="sv" id="stat-total">0</div><div class="sl">总计</div></div></div></div></div>
 <div id="practice-area" class="hi">
-<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="sm">第 <span id="current-num">1</span> / <span id="total-num">10</span> 题</span><span class="tm" id="timer">00:00</span></div>
+<div class="card"><div style="display:flex;justify-content:space-between;align-items:center"><span class="sm">第 <span id="current-num">1</span> / <span id="total-num">10</span> 题</span><span class="tm" id="timer">00:00</span><button class="btn bd" id="submit-btn" style="display:none;margin-left:auto">提交答案</button></div>
 <div class="pb"><div class="pf" id="progress-fill" style="width:10%"></div></div>
 <div class="qm" id="question-meta"></div><div class="qt" id="question-text"></div>
 <div id="options-area"></div>
 <div class="fg" id="text-answer-area" style="display:none"><label class="fl">请输入答案：</label><textarea id="text-answer" class="fi" rows="4"></textarea></div>
-<div class="nb"><button class="btn" id="prev-btn" disabled>上一题</button><div class="bg" style="margin-top:0"><button class="btn bw" id="show-answer-btn">显示答案</button><button class="btn bd" id="submit-btn">提交答案</button><button class="btn" id="next-btn">下一题</button></div></div><div id="answer-panel" class="card mt1 hi"></div></div></div>
+<div class="nb"><button class="btn" id="prev-btn" disabled>上一题</button><button class="btn" id="next-btn">下一题</button></div><div id="answer-panel" class="card mt1 hi"></div></div></div>
 <div id="result-area" class="hi">
 <div class="card ce"><div class="ct">练习结果</div><div class="sb2" id="final-score">0</div>
 <div class="sm tl mb1">用时：<span id="final-time">00:00</span></div>
