@@ -1,3 +1,23 @@
 _check.js
 __pycache__/
 *.pyc
+
+# Build scripts and tooling
+build_html.py
+extract_questions.py
+split_pwa.py
+
+# Source data (extracted from PDF)
+pdf_text.txt
+pdf_text_full.txt
+*.pdf
+
+# Single-file build outputs
+fitter-exam-practice.html
+钳工理论考核练习系统.html
+
+# Temp folders
+fitter-exam-practic-upload/
+
+# Spec workflow metadata
+.spec-workflow/
